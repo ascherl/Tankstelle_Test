@@ -7,53 +7,46 @@ import java.util.Random;
  */
 public class Auto {
 	Random r = new Random();
+	private int nummer;
 	private int tanken;
-	private int zahlen;
-	private boolean ausgestiegen;
 	private int raeumen;
-	private int warten;
+	public Fahrer fahrer = new Fahrer();
+	private int warten; // Kšnnte nutzlos werden, wenn jedes Auto eine Nummer (= Eintreffzeit) bekommt.
 	
-	public Auto() {
-		tanken = r.nextInt(100) + 201;
-		zahlen = r.nextInt(30) + 21;
-		ausgestiegen = false;
-		raeumen = r.nextInt(40) + 31;
-		warten = 0;
+	public Auto(int ankunft) {
+		this.nummer = ankunft;
+		this.tanken = r.nextInt(100) + 201;
+		this.raeumen = r.nextInt(40) + 31;
+		this.warten = 0;
+		Fahrer fahrer;
+	}
+	
+	public int getNummer() {
+		return nummer;
 	}
 	
 	public int getTanken() {
 		return tanken;
 	}
-	public void Tanken(int tanken) {
+	public void tanken() {
 		this.tanken--;
-	}
-	
-	public int getZahlen() {
-		return zahlen;
-	}
-	public void Zahlen() {
-		this.zahlen--;
+		if (this.tanken == 0) {
+			this.fahrer.setAusgestiegen(true);
+		}
 	}
 	
 	public int getRaeumen() {
 		return raeumen;
 	}
-	public void Raeumen() {
+	public void raeumen() {
 		this.raeumen--;
 	}
 
 	public int getWarten() {
 		return warten;
 	}
-	public void Warten() {
+	public void warten() {
 		this.warten++;
-	}
-	
-	public boolean isAusgestiegen() {
-		return ausgestiegen;
-	}
-	public void setAusgestiegen(boolean ausgestiegen) {
-		this.ausgestiegen = ausgestiegen;
 	}
 	
 }
